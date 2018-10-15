@@ -4,7 +4,6 @@ import Struct.BoardDTO;
 import Struct.PostDTO;
 import Struct.PostImageDTO;
 import Struct.TorrentFileDTO;
-import javafx.geometry.Pos;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,51 +11,86 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URLDecoder;
-import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TorrentLinCrawl implements Crawler {
+public class TorrentBozaCrawl implements Crawler {
 
-    private String SITE_URL = "https://torrentlin.com";
+    private String SITE_URL = "https://torrentboza.com";
     private List<BoardDTO> boards = new ArrayList<>();
     private List<Selector> selectors = new ArrayList<>();
 
-    public TorrentLinCrawl(){
+    //인터넷 접속 속도가 너무 느림
+    public TorrentBozaCrawl(){
+        /*
+        1. 한국영화
+         */
+        //https://torrentboza.com/bbs/board.php?bo_table=ko_movie
+        //#fboardlist > div.list-board > ul > li:nth-child(1) > div.wr-subject > a
+        //
+        //https://torrentboza.com/bbs/board.php?bo_table=ko_movie&wr_id=
+        //#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > h1
+        //#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.panel-heading > div > span:nth-child(1) > span
+        //#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.panel-heading > div > span.pull-right > span
+        //yyyy-mm-ddksthh:mm:ss /*수정이 필요 할 것으로 예상됨*/
+        //#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div:nth-child(3) > div.panel.panel-default > ul > a > li
+        //#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.list-group.font-12 > a
+
+
+
         selectors.add(new Selector(
-                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_new",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(4) > tbody > tr > td > form > table > tbody > tr:nth-child(2) > td.subject > nobr > a",
-                        "../bbs/board.php?bo_table=torrent_movie_new&wr_id=",
-                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_new&wr_id=",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(1) > tbody > tr > td:nth-child(1) > h1",
-                        "",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(1) > div:nth-child(1) > span",
-                        "업데이트 : yy-MM-dd HH:mm",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(3)",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(2)"
+                        "https://torrentboza.com/bbs/board.php?bo_table=ko_movie",
+                        "#fboardlist > div.list-board > ul > li:nth-child(1) > div.wr-subject > a",
+                        "../bbs/board.php?bo_table=torrent_movie_new&wr_id=", /*모르겠다*/
+                        "https://torrentboza.com/bbs/board.php?bo_table=ko_movie&wr_id=",
+                        "#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > h1",
+                        "#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.panel-heading > div > span:nth-child(1) > span",
+                        "#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.panel-heading > div > span.pull-right > span",
+                        "yyyy-mm-ddksthh:mm:ss",
+                        "#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div:nth-child(3) > div.panel.panel-default > ul > a > li",
+                        0, 0, "",
+                        "#thema_wrapper > div.at-body > div > div > div.col-md-9.pull-right.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.list-group.font-12 > a",
+                        0, 0, ""
                 )
         );
-        selectors.add(new Selector(
-                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old",
-                        "td.subject a[href]",
-                        "../bbs/board.php?bo_table=torrent_movie_old&wr_id=",
-                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old&wr_id=",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(1) > tbody > tr > td:nth-child(1) > h1",
-                        "",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(1) > div:nth-child(1) > span",
-                        "업데이트 : yy-MM-dd HH:mm",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(3)",
-                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(2)"
-                )
-        );
+        /*
+            2. 외국영화
+            3. 에로영화
+        */
+//        selectors.add(new Selector(
+//                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old",
+//                        //body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(4) > tbody > tr > td > form > table > tbody > tr:nth-child(2) > td.subject
+//                        "td.subject a[href]",
+//                        "../bbs/board.php?bo_table=torrent_movie_old&wr_id=",
+//                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old&wr_id=",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(1) > tbody > tr > td:nth-child(1) > h1",
+//                        "",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(1) > div:nth-child(1) > span",
+//                        "업데이트 : yy-MM-dd HH:mm",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(3)",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(2)"
+//                )
+//        );
+    }
+
+
+    public Document connection(String connectionURL) throws Exception{
+
+        Document doc = Jsoup.connect(connectionURL)
+                .header("Origin", "http://torrentlin.com")
+                .header("Referer", "http://torrentlin.com")
+                .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+                .header("Content-Type", "text/html;charset=iso-8859-1")
+                .method(Connection.Method.GET)
+                .ignoreContentType(true)
+                .get();
+        return doc;
     }
 
     @Override
@@ -75,15 +109,8 @@ public class TorrentLinCrawl implements Crawler {
         if(board.getSelector() == null) return false;
         try {
             Thread.sleep(1000);
-            Document rawBoard =  Jsoup.connect(board.getBoardUrl())
-                    .header("Origin", "http://torrentlin.com")
-                    .header("Referer", "http://torrentlin.com")
-                    .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-                    .header("Content-Type", "text/html;charset=iso-8859-1")
-                    //.header("Accept-Encoding", "gzip, deflate, br")
-                    .method(Connection.Method.GET)
-                    .ignoreContentType(true)
-                    .get();
+            Document rawBoard = connection(board.getBoardUrl());
+
             String LastUpdated = "-";
             String LastUpdatedList = rawBoard.select(board.getSelector().LAST_UPDATED_SELECTOR).attr("href");
             if(LastUpdatedList != null&& LastUpdatedList.length() != 0)
@@ -126,6 +153,7 @@ public class TorrentLinCrawl implements Crawler {
         Thread.sleep(10000);
 
             Document rawPost = Jsoup.connect(board.getSelector().POST_BASE_URL+postNum)
+                    .timeout(10000)
                     .header("Origin", "http://torrentlin.com")
                     .header("Referer", board.getBoardUrl())
                     .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
@@ -234,12 +262,14 @@ public class TorrentLinCrawl implements Crawler {
                         //TODO ' replace 구문 만들기
                         //TODO replace 합치기
                     System.out.println("link : "+ downloadInfo[0]);
+//                    System.out.println("file_ tilte : "+ downloadInfo[1]);
                     Connection.Response response = Jsoup.connect(downloadInfo[0])
                             .header("Origin", "http://torrentlin.com")
                             .header("Referer", post.getPost_link())
                             .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                             .header("Content-Type", "text/html;charset=iso-8859-1")
                             .header("Accept-Encoding", "gzip, deflate, br")
+//                                    .header("Accept-Language", "ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4")
                             .method(Connection.Method.GET)
                             .cookies(cookie)
                             .ignoreContentType(true)
@@ -290,8 +320,14 @@ public class TorrentLinCrawl implements Crawler {
             //TODO 셀렉터 등록하기
             Elements elems = tmpDocument.select("#writeContents > article > img");
             for (Element elem : elems){
+
+
+
+
+
                 Pattern p = Pattern.compile("\\.\\.[/_0-9a-zA-Z]*\\.(jpg|png|gif)");
                 Matcher m = p.matcher(elem.toString());
+
 
                 if(m.find()){
                     if (m.group(0) !=null){
@@ -307,6 +343,7 @@ public class TorrentLinCrawl implements Crawler {
 
                         String IMG_PATH = "C:\\crawler\\torrentlin\\img\\" + m.group(0).split("/")[5];
                         FileOutputStream out = new FileOutputStream(new java.io.File(IMG_PATH));
+//                        FileOutputStream out = new FileOutputStream(new java.io.File(m.group(0).split("/")[5]));
                         out.write(response.bodyAsBytes());
                         out.close();
 
@@ -315,12 +352,19 @@ public class TorrentLinCrawl implements Crawler {
                         postImageDTOS.add(postImageDTO);
                     }
                 }
+
+
             }
+
+
+
+//            tmpTorrent.setPost_seq(post.getSeq());
         } catch (Exception e) {
             return null;
         }
         return postImageDTOS;
     }
+
 
     //getPost 함수의 첫번째 인자는 post table의 마지막 저장 시간
     //두번째 인자는 현재 시간을 저장하는 방식을 사용

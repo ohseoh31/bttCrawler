@@ -6,14 +6,54 @@ import Struct.PostDTO;
 import Struct.SiteDTO;
 import bttSQL.DBHandler;
 
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Controller {
+
+
+    public static List<PostDTO> torrentLinCrawlStart(List<BoardDTO> tmpBoards, DBHandler bttDb){
+
+        Crawler torrentLinCrawler = new TorrentLinCrawl();
+
+        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_new"));
+        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old"));
+        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_3d"));
+        torrentLinCrawler.setBoards(tmpBoards);
+
+        List<PostDTO> posts = ((TorrentLinCrawl) torrentLinCrawler).testMethod();
+        return posts;
+    }
+
+    public static List<PostDTO> daktoCrawlStart(List<BoardDTO> tmpBoards, DBHandler bttDb){
+
+        Crawler daktoCrawl = new DaktoCrawl();
+
+        tmpBoards.add(bttDb.getBoardInfo("https://dakto.org/d/new_movie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://dakto.org/d/old_movie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://dakto.org/d/kr_movie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://dakto.org/d/us_movie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://dakto.org/d/3d_movie"));
+        daktoCrawl.setBoards(tmpBoards);
+
+        List<PostDTO> posts = ((DaktoCrawl) daktoCrawl).testMethod();
+        return posts;
+    }
+
+    public static List<PostDTO> beeCrawlStart(List<BoardDTO> tmpBoards, DBHandler bttDb){
+
+        Crawler beeTorrentCrawl = new BeeTorrentCrawl();
+
+        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/최신영화/?board_name=newmovie"));
+        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/지난영화/?board_name=oldmovie"));
+        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/고화질영화/?board_name=hdmovie"));
+        beeTorrentCrawl.setBoards(tmpBoards);
+
+        List<PostDTO> posts = ((BeeTorrentCrawl) beeTorrentCrawl).testMethod();
+        return posts;
+    }
+
+
     public static void main(String[] args){
 
         //DB 접근
@@ -28,6 +68,7 @@ public class Controller {
 
         SiteDTO torrentLinSite = bttDb.getSiteInfo("https://torrentlin.com");
         List<BoardDTO> tmpBoards = new ArrayList<>();
+
 //        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_new"));
 //        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old"));
 //        tmpBoards.add(bttDb.getBoardInfo("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_3d"));
@@ -36,26 +77,35 @@ public class Controller {
 //        List<PostDTO> posts = ((TorrentLinCrawl) torrentLinCrawler).testMethod();
 
 
-        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/최신영화/?board_name=newmovie"));
-        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/지난영화/?board_name=oldmovie"));
-        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/고화질영화/?board_name=hdmovie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/최신영화/?board_name=newmovie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/지난영화/?board_name=oldmovie"));
+//        tmpBoards.add(bttDb.getBoardInfo("https://beetorrent.com/영화/고화질영화/?board_name=hdmovie"));
+//        beeTorrentCrawl.setBoards(tmpBoards);
 
-        beeTorrentCrawl.setBoards(tmpBoards);
-        List<PostDTO> posts = ((BeeTorrentCrawl) beeTorrentCrawl).testMethod();
 
-       // torrentLinCrawler.saveTorrentFile("https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_new&wr_id=3469");
         /*
-        List<PostDTO> posts = new ArrayList<>();
-        for (BoardDTO itr : tmpBoards){
-            //Post 데이터베이스 리스트 생성
-            int lastUpdate_index = torrentLinCrawler.doCrawl(itr);  //////using torrentLinCrawler
-            for (int i = 1 ; i< 4; i++){
-                PostDTO tmpPost = torrentLinCrawler.getPost(i); /////using torrentLinCrawler
-                if( tmpPost != null) posts.add(tmpPost);
-            }
-        }
-        */
+            TorrentLin 크롤러
+         */
+//        List<PostDTO> posts = torrentLinCrawler(tmpBoards, bttDb);
+
+        /*
+            Dakto 크롤러
+         */
+//        List<PostDTO> posts = daktoCrawlStart(tmpBoards, bttDb);
+
+        /*
+            BeeTorrent 크롤러
+         */
+        List<PostDTO> posts = beeCrawlStart(tmpBoards, bttDb);
+
+        /*
+            TorrentBoza
+         */
+//        List<PostDTO> posts = torrentbozaCrawlStart(tmpBoards, bttDb);
+
+
         bttDb.insertPosts(posts);
         bttDb.close();
     }
 }
+

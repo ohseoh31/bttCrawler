@@ -12,10 +12,7 @@ import org.jsoup.select.Elements;
 
 import java.io.FileOutputStream;
 import java.net.URLDecoder;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,78 +20,68 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BeeTorrentCrawl implements Crawler{
-    private String SITE_URL = "https://beetorrent.com";
+public class DaktoCrawl implements Crawler {
+
+    private String SITE_URL = "https://dakto.org";
     private List<BoardDTO> boards = new ArrayList<>();
     private List<Selector> selectors = new ArrayList<>();
 
-    public BeeTorrentCrawl(){
-        selectors.add(new Selector(
-                        "https://beetorrent.com/영화/최신영화/?board_name=newmovie",
-                        "#newmovie_board_box > div.col-md-12.col-xs-12.basic-post-gallery > div:nth-child(1) > div > div.post-content.text-center > div.post-subject > a",
-                        "/최신영화?board_name=newmovie&vid=", /*보류 : ../bbs/board.php?bo_table=torrent_movie_new&wr_id=*/
-                        "https://beetorrent.com/영화/최신영화/?board_name=newmovie&vid=",
-                        "#mb_newmovie_tr_title > td > span:nth-child(1)",
-                        "",
-                        "#mb_newmovie_tr_title > td > span:nth-child(2)",
-                        "yyyy-MM-dd HH:mm",
 
+    public DaktoCrawl(){
+        /*
+        1. 한국영화
+         */
+        selectors.add(new Selector(
+                        "https://dakto.org/d/new_movie",
+                        "#fboardlist > div.list-board > ul > li:nth-child(1) > div.wr-subject > a",
+                        "https://dakto.org/d/new_movie/", /*모르겠다*/
+                        "https://dakto.org/d/new_movie/",
+                        "#thema_wrapper > div > div.at-body > div > div > div.col-md-9.at-col.at-main > div.view-wrap > section > article > h1",
                         "",
-                        2,
-                        3,
-                        "",
-                        "#mb_newmovie_tr_file_download > td > div:nth-child(1) > a > span",
-                        1,
-                        1,
-                        ""
+                        "#thema_wrapper > div > div.at-body > div > div > div.col-md-9.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.list-group.font-12 > a:nth-child(1) > span.pull-right.hidden-xs.text-muted",
+                        "yyyy.MM.dd HH:mm",
+                        "", 1, 1, ") > ul > li > a",
+                        "#thema_wrapper > div > div.at-body > div > div > div.col-md-9.at-col.at-main > div.view-wrap > section > article > div.panel.panel-default.view-head > div.list-group.font-12 > a",
+                        1, 1, ")"
                 )
         );
-        selectors.add(new Selector(
-                        "https://beetorrent.com/영화/지난영화/?board_name=oldmovie",
-                        "#oldmovie_board_box > div.col-md-12.col-xs-12.basic-post-gallery > div:nth-child(1) > div > div.post-content.text-center > div.post-subject > a",
-                        "/지난영화?board_name=oldmovie&vid=",
-                        "https://beetorrent.com/영화/지난영화/?board_name=oldmovie&vid=",
-                        "#mb_oldmovie_tr_title > td > span:nth-child(1)",
-                        "",
-                        "#mb_oldmovie_tr_title > td > span:nth-child(2)",
-                        "yyyy-MM-dd HH:mm",
+        /*
+            2. 외국영화
+            3. 에로영화
+        */
+//        selectors.add(new Selector(
+//                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old",
+//                        //body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(4) > tbody > tr > td > form > table > tbody > tr:nth-child(2) > td.subject
+//                        "td.subject a[href]",
+//                        "../bbs/board.php?bo_table=torrent_movie_old&wr_id=",
+//                        "https://torrentlin.com/bbs/board.php?bo_table=torrent_movie_old&wr_id=",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(1) > tbody > tr > td:nth-child(1) > h1",
+//                        "",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(1) > div:nth-child(1) > span",
+//                        "업데이트 : yy-MM-dd HH:mm",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(3)",
+//                        "body > div > table > tbody > tr:nth-child(6) > td > table > tbody > tr > td:nth-child(1) > div:nth-child(2) > table:nth-child(3) > tbody > tr > td > div:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(", 2, 3, ") > td > div > div:nth-child(1) > a:nth-child(2)"
+//                )
+//        );
+    }
 
-                        "",
-                        2,
-                        3,
-                        "",
-                        "#mb_newmovie_tr_file_download > td > div:nth-child(1) > a > span",
-                        1,
-                        1,
-                        ""
-                )
-        );
 
-        selectors.add(new Selector(
-                        "https://beetorrent.com/영화/고화질영화/?board_name=hdmovie",
-                        "#hdmovie_board_box > div.col-md-12.col-xs-12.basic-post-gallery > div:nth-child(1) > div > div.post-content.text-center > div.post-subject > a",
-                        "/고화질영화/?board_name=hdmovie&vid=",
-                        "https://beetorrent.com/영화/고화질영화/?board_name=hdmovie&vid=",
-                        "#mb_hdmovie_tr_title > td > span:nth-child(1)",
-                        "",
-                        "#mb_hdmovie_tr_title > td > span:nth-child(2)",
-                        "yyyy-MM-dd HH:mm",
+    public Document connection(String connectionURL) throws Exception{
 
-                        "",
-                        2,
-                        3,
-                        "",
-                        "#mb_newmovie_tr_file_download > td > div:nth-child(1) > a > span",
-                        1,
-                        1,
-                        ""
-                )
-        );
+        Document doc = Jsoup.connect(connectionURL)
+                .header("Origin", "http://torrentlin.com")
+                .header("Referer", "http://torrentlin.com")
+                .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+                .header("Content-Type", "text/html;charset=iso-8859-1")
+                .method(Connection.Method.GET)
+                .ignoreContentType(true)
+                .get();
+        return doc;
     }
 
     @Override
     public void login(String id, String pw) {
-
+        //TODO
     }
 
     @Override
@@ -108,15 +95,8 @@ public class BeeTorrentCrawl implements Crawler{
         if(board.getSelector() == null) return false;
         try {
             Thread.sleep(1000);
-            Document rawBoard =  Jsoup.connect(board.getBoardUrl())
-                    .header("Origin", "http://beetorrent.com")
-                    .header("Referer", "http://beetorrent.com")
-                    .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-                    .header("Content-Type", "text/html;charset=iso-8859-1")
-                    //.header("Accept-Encoding", "gzip, deflate, br")
-                    .method(Connection.Method.GET)
-                    .ignoreContentType(true)
-                    .get();
+            Document rawBoard = connection(board.getBoardUrl());
+
             String LastUpdated = "-";
             String LastUpdatedList = rawBoard.select(board.getSelector().LAST_UPDATED_SELECTOR).attr("href");
             if(LastUpdatedList != null&& LastUpdatedList.length() != 0)
@@ -124,20 +104,19 @@ public class BeeTorrentCrawl implements Crawler{
                 LastUpdated = rawBoard.select(board.getSelector().LAST_UPDATED_SELECTOR).attr("href").substring(board.getSelector().BOARD_BASE_URL.length());
             }
             String LastIndex = LastUpdated.replaceAll("[^0-9]", " ");
-             board.getSelector().LAST_UPDATED_IDX = Integer.parseInt(LastIndex.trim().split(" ")[0]);
+            board.getSelector().LAST_UPDATED_IDX = Integer.parseInt(LastIndex.trim().split(" ")[0]);
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }
         return true;
     }
-
     @Override
     public void setBoards(List<BoardDTO> boards) {
         this.boards= boards;
         for(BoardDTO itrBoard: this.boards){
             if(!setBoard(itrBoard)){
-                System.out.println("no selector for "+ itrBoard.getBoardUrl());
+             System.out.println("no selector for "+ itrBoard.getBoardUrl());
             }
         }
     }
@@ -158,47 +137,36 @@ public class BeeTorrentCrawl implements Crawler{
     public PostDTO getPost(BoardDTO board, int postNum) throws Exception {
 
         Thread.sleep(10000);
-        System.out.println("시간 확인");
 
-        Document rawPost = Jsoup.connect(board.getSelector().POST_BASE_URL+postNum)
-                .header("Origin", "http://torrentlin.com")
-                .header("Referer", board.getBoardUrl())
-                .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-                .header("Content-Type", "text/html;charset=iso-8859-1")
-                .method(Connection.Method.GET)
-                .ignoreContentType(true)
-                .get();
+            Document rawPost = Jsoup.connect(board.getSelector().POST_BASE_URL+postNum)
+                    .timeout(10000)
+//                    .header("Origin", "http://torrentlin.com")
+                    .header("Referer", board.getBoardUrl())
+                    .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+                    .header("Content-Type", "text/html;charset=iso-8859-1")
+                    .method(Connection.Method.GET)
+                    .ignoreContentType(true)
+                    .get();
         String title = selectFromDoc(rawPost,board.getSelector().TITLE_SELECTOR);
         String userName = selectFromDoc(rawPost,board.getSelector().USER_NAME_SELECTOR);
-//        String dateString=selectFromDoc(rawPost, board.getSelector().CREATED_DATE_SELECTOR) ;
-//        if(dateString !="-"){
-//            dateString = dateString + " 00:00";
-//        }
-//
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(board.getSelector().DATE_TIME_FORMAT);
-//        LocalDateTime time = LocalDateTime.parse(dateString, formatter);
-//        PostDTO rstPost = new PostDTO(
-//                board.getSeq(),
-//                board.getSelector().POST_BASE_URL+postNum,
-//                title,userName,time,null,null
-//        );
 
+        String dateString=selectFromDoc(rawPost, board.getSelector().CREATED_DATE_SELECTOR);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(board.getSelector().DATE_TIME_FORMAT);
+        LocalDateTime time = LocalDateTime.parse(dateString, formatter);
 
-        //tmp
-        LocalDateTime dateTime = LocalDateTime.now();
         PostDTO rstPost = new PostDTO(
                 board.getSeq(),
                 board.getSelector().POST_BASE_URL+postNum,
-                title,userName,dateTime,null,null
+                title,userName,time,null,null
         );
-
-
 
         List<PostImageDTO> postImageDTOS = savePostImage(rstPost);
         rstPost.setImages(postImageDTOS);
 
         List<TorrentFileDTO> torrentFileDTOs = saveTorrentFile(rstPost, board);
         rstPost.setTorrents(torrentFileDTOs);
+
+        System.out.println("");
 
         return rstPost;
     }
@@ -216,7 +184,7 @@ public class BeeTorrentCrawl implements Crawler{
                     rstPosts.add(post);
                 }
                 else{
-                    //TODO Remove 잔여 파일
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -238,23 +206,19 @@ public class BeeTorrentCrawl implements Crawler{
 
     @Override
     public int crawlTorrentSite() {
-
         return 0;
     }
 
     @Override
     public List<TorrentFileDTO> saveTorrentFile(PostDTO post, BoardDTO boardDTO) {
-
         List<TorrentFileDTO> torrentFiles = new ArrayList<>();
         Boolean margnetFlag = false;
         String margnetString="";
-        //mode=file&board_action=file_download&board_name=[보드명]&file_pid=[크롤링ID]&file_name=+
-        try {
 
+        try {
             Connection.Response loginPageResponse = Jsoup.connect(post.getPost_link())
                     .timeout(3000)
-                    .header("Origin", "http://torrentlin.com")
-                    .header("Referer", "http://torrentlin.com")
+                    .header("Referer", this.SITE_URL)
                     .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                     .header("Content-Type", "application/x-www-form-urlencoded")
                     .method(Connection.Method.GET)
@@ -262,6 +226,7 @@ public class BeeTorrentCrawl implements Crawler{
             Map<String, String> cookie = loginPageResponse.cookies();
             Document tmpDocument = loginPageResponse.parse();
 
+            //마그넷 주소 알아오기
             if (!margnetFlag){
                 Elements margnetElements = tmpDocument.select("a[href]");
                 for (Element ele : margnetElements){
@@ -272,35 +237,46 @@ public class BeeTorrentCrawl implements Crawler{
                         if(match.find()){ // 이미지 태그를 찾았다면,,
                             margnetString = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
                             margnetFlag = true;
-                            break;
                         }
+                        System.out.println(margnetString);
                     }
                 }
             }
 
             //토렌트 정보 얻기
-            Elements elems = tmpDocument.select("span");
-            String TORRENT_FILE_DOWNLOAD_URL = "https://beetorrent.com/?mb_ext=file&path=bmV3bW92aWUvMjcyODMwMDEzNV9YZGp5d0xZRl8xNzViYzMxMjg1MjFmMTBfZDMwMjRmY2U4YzE4MWEzNWNlYzA4Zjk0OWJmMTNlMzk0YzdlMTRhYS50b3JyZW50&type=download&file_name=";
+            Elements elems = tmpDocument.select(boardDTO.getSelector().TORRENT_URL_SELECTOR);
             TorrentFileDTO tmpTorrent = new TorrentFileDTO();
             tmpTorrent.setPost_seq(post.getSeq());
 
             for (Element elem : elems) {
-                if (elem.toString().contains(".torrent")){
-                    String torrentFileName;
-                    torrentFileName =  elem.toString().replace("<span>","").replace("</span>","");
-                    System.out.println(torrentFileName);
 
-                    Connection.Response response = Jsoup.connect(TORRENT_FILE_DOWNLOAD_URL + torrentFileName)
+                if (elem.attr("href").contains("https://dakto.org/download?bo_table=new_movie&wr_id=") && elem.toString().contains(".torrent")) {
+                    String strings[] = elem.toString().split("<i class=\"fa fa-download\"></i> ");
+                    strings = strings[1].split(".torrent");
+                    String torrentFileName = strings[0];
+
+                    //TODO 안깔끔해 아직도
+                    String matches = ".\\/\\[\\{\\}\\}\\]\\?\\.\\,\\;\\:\\|\\)\\*\\~\\`\\!\\^\\-\\+\\<\\>\\@\\#\\$\\%\\&\\\\\\=\\(\\'\\\"";
+                    torrentFileName = torrentFileName.replaceAll(matches, "")
+                            .replace(".", " ") + ".torrent";
+
+//                    System.out.println(torrentFileName);
+
+                    Connection.Response response = Jsoup.connect(elem.attr("href").toString())
                             .header("Referer", post.getPost_link())
                             .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                             .header("Content-Type", "text/html;charset=iso-8859-1")
                             .header("Accept-Encoding", "gzip, deflate, br")
+//                                    .header("Accept-Language", "ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4")
                             .method(Connection.Method.GET)
                             .cookies(cookie)
                             .ignoreContentType(true)
                             .execute();
 
-                    String torrentFilePath = "C:\\crawler\\beetorrent\\torrent\\" + torrentFileName;
+                    //String IMG_PATH = "C:\\crawler\\torrentlin\\img\\" + m.group(0).split("/")[5];
+                    String torrentFilePath = "C:\\crawler\\dakto\\torrent\\" + torrentFileName;
+//                    System.out.println("토렌트 파일 명 : "+torrentFilePath);
+
                     FileOutputStream out = new FileOutputStream(new java.io.File(torrentFilePath));
                     out.write(response.bodyAsBytes());
                     out.close();
@@ -309,6 +285,7 @@ public class BeeTorrentCrawl implements Crawler{
                 }
                 torrentFiles.add(tmpTorrent);
             }
+
         } catch (Exception e) {
             return null;
         }
@@ -318,13 +295,11 @@ public class BeeTorrentCrawl implements Crawler{
     @Override
     public List<PostImageDTO> savePostImage(PostDTO postDTO) {
         List<PostImageDTO> postImageDTOS = new ArrayList<>();
-        String saveImgPath ="";
-
         try {
             Connection.Response imgPathResponse = Jsoup.connect(postDTO.getPost_link())
                     .timeout(3000)
-                    .header("Origin", "http://torrentlin.com")
-                    .header("Referer", "http://torrentlin.com")
+//                    .header("Origin", "http://torrentlin.com")
+                    .header("Referer", postDTO.getPost_link())
                     .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                     .header("Content-Type", "application/x-www-form-urlencoded")
                     .method(Connection.Method.GET)
@@ -332,17 +307,21 @@ public class BeeTorrentCrawl implements Crawler{
 
             Document tmpDocument = imgPathResponse.parse();
 
-            Elements elems = tmpDocument.select("#mb_newmovie_tr_file_image > td > div > img");
+            //TODO 셀렉터 등록하기
+            String imgSelector = "#thema_wrapper > div > div.at-body > div > div > div.col-md-9.at-col.at-main > div.view-wrap > section > article > div:nth-child(3) > div.view-content > a > img";
+            Elements elems = tmpDocument.select("#thema_wrapper > div > div.at-body > div > div > div.col-md-9.at-col.at-main > div.view-wrap > section > article > div:nth-child(3) > div.view-content > a > img");
             for (Element elem : elems){
+                String imgInfo = elem.toString();
+                System.out.println(elem.toString());
 
-                Pattern p = Pattern.compile("(img src=\")([\\/\\-\\_0-9a-zA-Z]*)");
-                Matcher m = p.matcher(elem.toString());
-                if (m.find()){
-                    if (m.group(2) != null && m.group(2).contains("/wp-content")){
-                        String imgPath = m.group(2);
-                        System.out.println(m.group(2));
-                        Connection.Response response = Jsoup.connect(this.SITE_URL + imgPath)
-                                .header("Origin", "http://torrentlin.com")
+                Pattern pattern = Pattern.compile("src=\"([a-zA-Z0-9\\:\\/\\.\\_\\-]+)");
+                Matcher match = pattern.matcher(elem.toString());
+
+                if(match.find()){
+                    if (match.group(0) !=null){
+                        String imgURL = match.group(0).replace("src=\"","");
+//                        System.out.println("이미지 : " + imgURL);
+                        Connection.Response response = Jsoup.connect( imgURL)
                                 .header("Referer", postDTO.getPost_link())
                                 .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                                 .header("Content-Type", "text/html;charset=iso-8859-1")
@@ -351,37 +330,36 @@ public class BeeTorrentCrawl implements Crawler{
                                 .ignoreContentType(true)
                                 .execute();
 
-                        //이미지 파일 저장
-                        saveImgPath ="C:\\crawler\\beetorrent\\img\\" + imgPath.split("/")[5] + ".jpg";
-                        FileOutputStream out = new FileOutputStream(new java.io.File(saveImgPath));
+                        String IMG_PATH = "C:\\crawler\\dakto\\img\\" + imgURL.split("new_movie/")[1];
+                        FileOutputStream out = new FileOutputStream(new java.io.File(IMG_PATH));
+
+//                        FileOutputStream out = new FileOutputStream(new java.io.File(m.group(0).split("/")[5]));
                         out.write(response.bodyAsBytes());
                         out.close();
 
+                        PostImageDTO postImageDTO = new PostImageDTO(IMG_PATH,"");
+                        postImageDTO.setPost_seq(postDTO.getSeq());
+                        postImageDTOS.add(postImageDTO);
                     }
                 }
-
-                System.out.println(saveImgPath);
-                PostImageDTO postImageDTO = new PostImageDTO(saveImgPath,"");
-                postImageDTO.setPost_seq(postDTO.getSeq());
-
-                postImageDTOS.add(postImageDTO);
             }
-
+//            tmpTorrent.setPost_seq(post.getSeq());
         } catch (Exception e) {
             return null;
         }
         return postImageDTOS;
     }
 
+    //getPost 함수의 첫번째 인자는 post table의 마지막 저장 시간
+    //두번째 인자는 현재 시간을 저장하는 방식을 사용
     public List<PostDTO> testMethod(){
         List<PostDTO> posts = new ArrayList<>();
         try {
-            posts = getPosts(boards.get(0),LocalDateTime.of(2018,10,3,12,1),LocalDateTime.of(2018,10,7,1,1));
+            posts = getPosts(boards.get(0),LocalDateTime.of(2018,10,1,0,0),LocalDateTime.of(2018,10,13,1,47));
+            //posts = getPosts(boards.get(0),LocalDateTime.of(2018,10,1,0,0),LocalDateTime.of(2018,10,7,00,00));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return posts;
     }
-
-
 }

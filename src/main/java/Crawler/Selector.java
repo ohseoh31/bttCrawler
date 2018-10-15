@@ -20,6 +20,9 @@ public class Selector {
     public int INC_TORRENT_IDX;
     public String TORRENT_URL_SELECTOR_BACK;
 
+    //TODO 이미지 셀렉터
+    public String TORRENT_IMG_SELECTOR;
+
     public Selector(
             String BOARD_URL,
             String LAST_UPDATED_SELECTOR,

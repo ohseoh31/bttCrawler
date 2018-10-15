@@ -19,7 +19,7 @@ public interface Crawler {
     public List<PostDTO> getBoardsPosts(List<BoardDTO> boards, LocalDateTime start, LocalDateTime end);
     public int crawlTorrentSite();
 
-    public List<TorrentFileDTO> saveTorrentFile(PostDTO post, String title);
+    public List<TorrentFileDTO> saveTorrentFile(PostDTO post, BoardDTO boardDTO);
 
     public List<PostImageDTO> savePostImage(PostDTO postDTO);
 

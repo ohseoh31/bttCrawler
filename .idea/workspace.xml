@@ -2,11 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c85b7e67-c13e-4a4a-97c3-417e67dd05aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Crawler/DaktoCrawl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Controller.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Crawler/Crawler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Crawler/Selector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Crawler/TorrentLinCrawl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Struct/BoardDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Struct/PostDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Struct/PostImageDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Struct/SiteDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Struct/TorrentFileDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/bttSQL/DBHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/holyNewCrawler.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Crawler/Crawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Crawler/Crawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Crawler/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Crawler/Selector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Struct/PostImageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Struct/PostImageDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bttSQL/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bttSQL/DBHandler.java" afterDir="false" />
@@ -22,35 +38,48 @@
     <session id="16707733">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.44" value="1" />
+          <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.51" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.63" value="1" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Ant-Man And The Wasp (2018) [WEBRip] [1080p] [YTSAM]torrent" value="1" />
-          <entry key="java" value="18" />
-          <entry key="jpg" value="8" />
+          <entry key="class" value="4" />
+          <entry key="java" value="30" />
+          <entry key="jpg" value="16" />
+          <entry key="log" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="8" />
-          <entry key="JAVA" value="18" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="CLASS" value="4" />
+          <entry key="Image" value="16" />
+          <entry key="JAVA" value="30" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2043" />
+          <entry key="class" value="22" />
+          <entry key="dummy" value="5" />
+          <entry key="java" value="6120" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2043" />
+          <entry key="CLASS" value="22" />
+          <entry key="JAVA" value="6119" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -62,22 +91,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+            <state relative-caret-position="259">
+              <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Struct/TorrentFileDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -85,70 +105,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+            <state relative-caret-position="95">
+              <caret line="242" selection-start-line="242" selection-end-line="242" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
+            <state relative-caret-position="19">
+              <caret line="173" selection-start-line="173" selection-end-line="173" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#10636#10637#0" expanded="true" />
+                <element signature="e#10660#10661#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/0_NKas46T3_VnhnX6laLoLbBwczVw3.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Crawler.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="107">
+              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Selector.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/DaktoCrawl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bttSQL/DBHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1178">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Struct/BoardDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ant-Man And The Wasp (2018) [WEBRip] [1080p] [YTSAM]torrent">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+            <state relative-caret-position="94">
+              <caret line="61" column="73" lean-forward="true" selection-start-line="61" selection-start-column="73" selection-end-line="61" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -164,23 +154,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insertPost</find>
-      <find>testMethod</find>
-      <find>selectFromDoc</find>
-      <find>post</find>
-      <find>saveTorrentFile</find>
-      <find>post_img</find>
-      <find>savePostImage</find>
-      <find>insert post</find>
       <find>date_time_format</find>
       <find>selectors</find>
       <find>BOARD_BASE_URL</find>
       <find>set</find>
       <find>selectFromDocselectFromDoc</find>
+      <find>dateString</find>
+      <find>00:00</find>
+      <find>selectFromDoc</find>
+      <find>마그넷</find>
+      <find>sleep</find>
+      <find>setImages</find>
       <find>setBoard</find>
+      <find>BOARD_URL</find>
+      <find>site results</find>
+      <find>System.out.println</find>
+      <find>setSelector</find>
       <find>getPosts</find>
       <find>getPost</find>
-      <find>dateString</find>
+      <find>getPost(</find>
+      <find>DateTimeFormatter formatter = DateTimeFormatter.ofPattern(board.getSelector().DATE_TIME_FORMAT);</find>
+      <find>LAST_UPDATED_SELECTOR</find>
+      <find>title</find>
+      <find>save</find>
+      <find>setBoards</find>
+      <find>m.</find>
+      <find>m.group</find>
+      <find>magnet</find>
+      <find>TORRENT_URL_SELECTOR</find>
+      <find>saveTorrentFile</find>
+      <find>savePostImage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,17 +194,20 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Struct/PostImageDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/bttSQL/DBHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Crawler/Crawler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java" />
         <option value="$PROJECT_DIR$/src/main/java/Crawler/Selector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Crawler/TorrentLinBoza.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Crawler/Crawler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Crawler/DaktoCrawl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java" />
         <option value="$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="270" />
-    <option name="y" value="210" />
+    <option name="x" value="125" />
+    <option name="y" value="190" />
     <option name="width" value="1555" />
     <option name="height" value="840" />
   </component>
@@ -210,6 +216,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,26 +261,26 @@
             <path>
               <item name="holyNewCrawler" type="b2602c69:ProjectViewProjectNode" />
               <item name="holyNewCrawler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Struct" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="holyNewCrawler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="holyNewCrawler" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539011568758" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539614863059" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Crawler" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ohseo\IdeaProjects\holyNewCrawler\target\classes\Crawler" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -326,7 +333,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49857953" visible="true" weight="0.25637585" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49857953" visible="true" weight="0.2536913" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -335,8 +342,8 @@
       <window_info id="Favorites" order="6" sideWeight="0.50142044" side_tool="true" weight="0.24966443" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.484375" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.48295453" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.68892044" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5625" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32954547" />
@@ -361,45 +368,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java</url>
-          <line>215</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java</url>
+          <line>120</line>
           <properties />
-          <option name="timeStamp" value="30" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java</url>
-          <line>129</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java</url>
+          <line>102</line>
           <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java</url>
-          <line>130</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java</url>
-          <line>131</line>
-          <properties />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java</url>
-          <line>132</line>
-          <properties />
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="51" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -417,19 +397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Struct/PostDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1121">
-          <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
-          <folding>
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1364#1365#0" expanded="true" />
-            <element signature="e#1930#1931#0" expanded="true" />
-            <element signature="e#1970#1971#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Struct/SiteDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -437,46 +404,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/0_DhwfxVTj_KVvYaX1PKVLdxSrKX.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_2e0g89Im_I9EFWhE7OHrKq3jeWSXBqChtnOKjG.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_0SjtIKaL_ZuNz63FTw7P4yeFmQMHN7EVTUmM99.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_dbACpgJz_LgF6TD5AHlZKvKNHWkcF5aTEE.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_DVJvF63h_JFtOxeUOSWZLCSKRU4EdcuQYGepQs.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_dymW9NKZ_GCfFsX45TmUhemN5a.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_gkQCjUIl_KVwBE9bL6XMy9Q8iVUQmxIUkfveCA6.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_hVKT1qJk_XJKtZfzKmY.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_LCMXhxEm_Fonz267Of2yKZ3LBvNy6hAlKF9ntjGG.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0_NG6kTSJY_oScfCk6xJyP3xLIOxH6eM9fa.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/0_DhwfxVTj_KVvYaX1PKVLdxSrKX.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_2e0g89Im_I9EFWhE7OHrKq3jeWSXBqChtnOKjG.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_0SjtIKaL_ZuNz63FTw7P4yeFmQMHN7EVTUmM99.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_dbACpgJz_LgF6TD5AHlZKvKNHWkcF5aTEE.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_DVJvF63h_JFtOxeUOSWZLCSKRU4EdcuQYGepQs.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_dymW9NKZ_GCfFsX45TmUhemN5a.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_gkQCjUIl_KVwBE9bL6XMy9Q8iVUQmxIUkfveCA6.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_hVKT1qJk_XJKtZfzKmY.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_LCMXhxEm_Fonz267Of2yKZ3LBvNy6hAlKF9ntjGG.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_NG6kTSJY_oScfCk6xJyP3xLIOxH6eM9fa.jpg" />
+    <entry file="file://$PROJECT_DIR$/0_NKas46T3_VnhnX6laLoLbBwczVw3.jpg" />
+    <entry file="file://$PROJECT_DIR$/Ant-Man And The Wasp (2018) [WEBRip] [1080p] [YTSAM]torrent" />
+    <entry file="file://$PROJECT_DIR$/new_15391348015bbd5551d67b5.jpg" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Struct/TorrentFileDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -484,60 +424,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java">
+    <entry file="file://$PROJECT_DIR$/target/classes/Crawler/BeeTorrentCrawl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+        <state relative-caret-position="304">
+          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/0_NKas46T3_VnhnX6laLoLbBwczVw3.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/target/classes/Crawler/Crawler.class">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Crawler.java">
+    <entry file="file://$PROJECT_DIR$/target/classes/Crawler/TorrentLinCrawl.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Struct/PostDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        <state relative-caret-position="114">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Selector.java">
+    <entry file="file://$PROJECT_DIR$/target/classes/Crawler/TorrentBozaCrawl.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Struct/BoardDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="532">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#640#641#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bttSQL/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="2261">
+          <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Struct/BoardDTO.java">
+    <entry file="file://$PROJECT_DIR$/hs_err_pid2228.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="175">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ant-Man And The Wasp (2018) [WEBRip] [1080p] [YTSAM]torrent">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Selector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+        <state relative-caret-position="190">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.11.2/jsoup-1.11.2-sources.jar!/org/jsoup/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/Crawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395624095bc3dba909256.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395632255bc3ded944903.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395632985bc3df22a3734.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395646625bc3e4764036a.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395673085bc3eecc36cf7.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395679245bc3f134a6706.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_15395683795bc3f2fbb131d.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/TorrentBozaCrawl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10636#10637#0" expanded="true" />
+            <element signature="e#10660#10661#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/BeeTorrentCrawl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
+        <state relative-caret-position="259">
+          <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/TorrentLinCrawl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Crawler/DaktoCrawl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="61" column="73" lean-forward="true" selection-start-line="61" selection-start-column="73" selection-end-line="61" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
